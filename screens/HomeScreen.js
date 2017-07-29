@@ -1,5 +1,7 @@
 import React from 'react'
 import {
+  Alert,
+  FlatList,
   Image,
   Platform,
   ScrollView,
@@ -20,64 +22,27 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}
-        >
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
-          </View>
-
-          <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
-
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View
-              style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
+        <FlatList
+          data={[{key: 'Vadim 1'}, {key: 'Vadim 2'}]}
+          renderItem={({item}) =>
+            <Text
+              style={styles.item}
+              onPress={async () => {
+                const soundObject = new Expo.Audio.Sound()
+                try {
+                  await soundObject.loadAsync(
+                    require('../assets/sounds/spin.mp3')
+                  )
+                  await soundObject.playAsync()
+                } catch (error) {
+                  Alert.alert(`Eroare cu sunetul ${item.key}: ${error}`)
+                  // An error occurred!
+                }
+              }}
             >
-              <MonoText style={styles.codeHighlightText}>
-                screens/HomeScreen.js
-              </MonoText>
-            </View>
-
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
-            </Text>
-          </View>
-
-          <View style={styles.helpContainer}>
-            <TouchableOpacity
-              onPress={this._handleHelpPress}
-              style={styles.helpLink}
-            >
-              <Text style={styles.helpLinkText}>
-                Help, it didn’t automatically reload!
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>
-            This is a tab bar. You can edit it in:
-          </Text>
-
-          <View
-            style={[styles.codeHighlightContainer, styles.navigationFilename]}
-          >
-            <MonoText style={styles.codeHighlightText}>
-              navigation/MainTabNavigator.js
-            </MonoText>
-          </View>
-        </View>
+              {item.key}
+            </Text>}
+        />
       </View>
     )
   }
@@ -119,8 +84,13 @@ export default class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#fff',
     flex: 1,
-    backgroundColor: '#fff'
+    paddingTop: 30
+  },
+  item: {
+    fontSize: 44,
+    padding: 10
   },
   developmentModeText: {
     marginBottom: 20,
@@ -128,25 +98,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 19,
     textAlign: 'center'
-  },
-  contentContainer: {
-    paddingTop: 30
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50
   },
   homeScreenFilename: {
     marginVertical: 7
