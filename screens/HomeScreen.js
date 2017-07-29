@@ -23,19 +23,20 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <FlatList
-          data={[{key: 'Vadim 1'}, {key: 'Vadim 2'}]}
+          data={[
+            {key: 'Marian', sound: require('../assets/sounds/marian.mp3')},
+            {key: 'Il bag', sound: require('../assets/sounds/il-bag.mp3')}
+          ]}
           renderItem={({item}) =>
             <Text
               style={styles.item}
               onPress={async () => {
                 const soundObject = new Expo.Audio.Sound()
                 try {
-                  await soundObject.loadAsync(
-                    require('../assets/sounds/spin.mp3')
-                  )
+                  await soundObject.loadAsync(item.sound)
                   await soundObject.playAsync()
                 } catch (error) {
-                  Alert.alert(`Eroare cu sunetul ${item.key}: ${error}`)
+                  Alert.alert(`Eroare cu sunetul "${item.key}": ${error}`)
                   // An error occurred!
                 }
               }}
