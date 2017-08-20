@@ -3,7 +3,7 @@ Vadim Tudor app
 
 Source code for the Vadim Tudor native app. This is a [soundboard][1]-type app. There are other similar apps on the Android Play store but this one doesn't display any ads.
 
-It's built with [react-native][2] and [expo][3], and published to both the Android and iOS app stores.
+It's built with [react-native][2] and [expo][3], and (soon will be) published to both the Android and iOS app stores.
 
 ## Building and running locally
 
