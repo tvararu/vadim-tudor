@@ -1,9 +1,10 @@
 {
   "name": "vadim-tudor",
   "version": "0.0.0",
-  "description": "Hello Expo!",
-  "author": null,
-  "license": "",
+  "description": "A soundboard app with soundbites from Romanian politician Vadim Tudor",
+  "author": "Theodor Vararu <theo@vararu.org>",
+  "license": "MIT",
+  "repository": "https://github.com/tvararu/vadim-tudor",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "test": "node_modules/jest/bin/jest.js",
