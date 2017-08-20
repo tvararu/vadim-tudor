@@ -1,85 +1,44 @@
 import React from 'react'
-import {
-  Alert,
-  Button,
-  FlatList,
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native'
-import {WebBrowser} from 'expo'
-
-import {MonoText} from '../components/StyledText'
+import {Alert, Button, FlatList, Platform, StyleSheet, View} from 'react-native'
+import {Audio} from 'expo'
 
 export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    header: null
-  }
-
-  render() {
+  render () {
     return (
       <View style={styles.container}>
         <FlatList
           data={[
             {key: 'Marian', sound: require('../assets/sounds/marian.mp3')},
             {key: 'Il bag', sound: require('../assets/sounds/il-bag.mp3')},
-            {key: 'Adu telefonul', sound: require('../assets/sounds/adu-telefonul.mp3')},
-            {key: 'Hai sictir', sound: require('../assets/sounds/hai-sictir.mp3')},
-            {key: 'Peste Vadim Tudor', sound: require('../assets/sounds/peste-vadim.mp3')}
+            {
+              key: 'Adu telefonul',
+              sound: require('../assets/sounds/adu-telefonul.mp3')
+            },
+            {
+              key: 'Hai sictir',
+              sound: require('../assets/sounds/hai-sictir.mp3')
+            },
+            {
+              key: 'Peste Vadim Tudor',
+              sound: require('../assets/sounds/peste-vadim.mp3')
+            }
           ]}
           renderItem={({item}) =>
             <Button
               style={styles.item}
               onPress={async () => {
-                const soundObject = new Expo.Audio.Sound()
+                const soundObject = new Audio.Sound()
                 try {
                   await soundObject.loadAsync(item.sound)
                   await soundObject.playAsync()
                 } catch (error) {
                   Alert.alert(`Eroare cu sunetul "${item.key}": ${error}`)
-                  // An error occurred!
                 }
               }}
               title={item.key}
             />}
         />
       </View>
-    )
-  }
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      )
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development tools.{' '}
-          {learnMoreButton}
-        </Text>
-      )
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      )
-    }
-  }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode')
-  }
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
     )
   }
 }
