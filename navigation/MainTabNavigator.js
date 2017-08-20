@@ -13,12 +13,6 @@ export default TabNavigator(
   {
     Home: {
       screen: HomeScreen
-    },
-    Links: {
-      screen: LinksScreen
-    },
-    Settings: {
-      screen: SettingsScreen
     }
   },
   {

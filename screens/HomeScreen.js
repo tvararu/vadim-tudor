@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   Alert,
+  Button,
   FlatList,
   Image,
   Platform,
@@ -25,10 +26,13 @@ export default class HomeScreen extends React.Component {
         <FlatList
           data={[
             {key: 'Marian', sound: require('../assets/sounds/marian.mp3')},
-            {key: 'Il bag', sound: require('../assets/sounds/il-bag.mp3')}
+            {key: 'Il bag', sound: require('../assets/sounds/il-bag.mp3')},
+            {key: 'Adu telefonul', sound: require('../assets/sounds/adu-telefonul.mp3')},
+            {key: 'Hai sictir', sound: require('../assets/sounds/hai-sictir.mp3')},
+            {key: 'Peste Vadim Tudor', sound: require('../assets/sounds/peste-vadim.mp3')}
           ]}
           renderItem={({item}) =>
-            <Text
+            <Button
               style={styles.item}
               onPress={async () => {
                 const soundObject = new Expo.Audio.Sound()
@@ -40,9 +44,8 @@ export default class HomeScreen extends React.Component {
                   // An error occurred!
                 }
               }}
-            >
-              {item.key}
-            </Text>}
+              title={item.key}
+            />}
         />
       </View>
     )
@@ -57,8 +60,8 @@ export default class HomeScreen extends React.Component {
       )
       return (
         <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use
-          useful development tools. {learnMoreButton}
+          Development mode is enabled, your app will be slower but you can use useful development tools.{' '}
+          {learnMoreButton}
         </Text>
       )
     } else {
@@ -71,9 +74,7 @@ export default class HomeScreen extends React.Component {
   }
 
   _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/development-mode'
-    )
+    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode')
   }
 
   _handleHelpPress = () => {
@@ -90,7 +91,10 @@ const styles = StyleSheet.create({
     paddingTop: 30
   },
   item: {
-    fontSize: 44,
+    borderColor: '#d6d7da',
+    borderWidth: 6,
+    color: 'purple',
+    fontSize: 35,
     padding: 10
   },
   developmentModeText: {
