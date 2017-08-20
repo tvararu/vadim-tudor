@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "standard",
+    "standard-react"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "react/jsx-uses-vars": [2],
+    "max-len": [1, 120]
+  }
+}
