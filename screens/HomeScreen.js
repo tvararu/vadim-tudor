@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
   item: {
     borderColor: '#d6d7da',
     borderWidth: 6,
-    color: 'purple',
     fontSize: 35,
     padding: 10
   },
